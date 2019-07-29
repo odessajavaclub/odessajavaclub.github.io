@@ -13,3 +13,5 @@ date:   YYYY-MM-DD HH:MM:ss +0200
 <!--more-->
 (additional content)
 ```
+
+An example can also be found at `/examples/2019-07-07-post-example-1.md`
