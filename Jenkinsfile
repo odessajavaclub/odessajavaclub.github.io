@@ -49,8 +49,7 @@ pipeline {
       steps {
         script {
           dir("${env.WORKSPACE}") {
-            sh 'git fetch'
-            sh 'git pull'
+            sh 'git pull origin jenkinsfile'
             sh "git config remote.origin.url 'https://${env.GIT_TOKEN}@github.com/odessajavaclub/odessajavaclub.github.io.git'"
             sh 'git clean -fdx'
           }
