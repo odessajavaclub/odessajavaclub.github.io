@@ -39,7 +39,24 @@ pipeline {
     )
   }
 
+  environment {
+    GIT_TOKEN = credentials("jenkins-github-access-token")
+  }
+
   stages {
+
+    stage('Set up Git env') {
+      steps {
+        script {
+          dir("${env.WORKSPACE}") {
+            sh 'git fetch'
+            sh 'git pull'
+            sh "git config remote.origin.url 'https://${env.GIT_TOKEN}@github.com/odessajavaclub/odessajavaclub.github.io.git'"
+            sh 'git clean -fdx'
+          }
+        }
+      }
+    }
 
     stage('Prepare post') {
       // when {
