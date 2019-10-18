@@ -46,9 +46,9 @@ pipeline {
   stages {
 
     stage('Set up git environment') {
-      when {
-        branch 'jenkinsfile'
-      }
+      // when {
+      //   branch 'jenkinsfile'
+      // }
       steps {
         script {
           dir("${env.WORKSPACE}") {
@@ -63,9 +63,9 @@ pipeline {
     }
 
     stage('Prepare post') {
-      when {
-        branch 'jenkinsfile'
-      }
+      // when {
+      //   branch 'jenkinsfile'
+      // }
       steps {
         script {
           def date = new Date()
@@ -99,9 +99,9 @@ pipeline {
     }
 
     stage('Create post') {
-      when {
-        branch 'jenkinsfile'
-      }
+      // when {
+      //   branch 'jenkinsfile'
+      // }
       steps {
         script {
           dir("${env.WORKSPACE}/_posts") {
