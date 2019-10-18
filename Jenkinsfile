@@ -82,9 +82,8 @@ pipeline {
               "${params.post_body}" +
               "\n"
 
-          env.POST += ("${params.details_url}" != '') ? ${params.details_url} : ''    
-          env.POST += "\n\n"
-          env.POST += ("${params.post_footer}" == true) ? "Join us next Wednesday, at 12:00 in ${params.room}" : ''
+          env.POST += ("${params.details_url}" != '') ? "${params.details_url}"+"\n\n" : ''    
+          env.POST += ("${params.post_footer}") ? "Join us next Wednesday, at 12:00 in ${params.room}" : ''
 
           sh 'printenv'
         }
