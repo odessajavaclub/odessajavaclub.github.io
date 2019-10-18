@@ -68,7 +68,7 @@ pipeline {
               "\n" +
               "${params.post_body}" +
               "\n" +
-              ({params.details_url} != '' ? "[${params.details_url}](${params.details_url})" : "") +
+              ({params.details_url} ? "[${params.details_url}](${params.details_url})" : "") +
               "\n\n" +
               ({params.post_footer} ? "Join us next Wednesday, at 12:00 in ${params.room}" : "")
 
@@ -89,7 +89,7 @@ pipeline {
             sh "git add ${env.FILENAME}"
             sh "git commit -m '${params.post_title}'"
             sshagent(['jenkins-github-ssh-key']) {
-              sh 'git push origin'
+              sh 'git push origin HEAD:jenkinsfile'
             }
           }
         }
