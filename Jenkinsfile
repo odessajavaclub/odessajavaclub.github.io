@@ -58,9 +58,6 @@ pipeline {
     }
 
     stage('Prepare post') {
-      // when {
-      //   branch 'jenkinsfile'
-      // }
       steps {
         script {
           def date = new Date()
@@ -83,10 +80,11 @@ pipeline {
               "---\n" +
               "\n" +
               "${params.post_body}" +
-              "\n" +
-              ({params.details_url} ? "[${params.details_url}](${params.details_url})" : "") +
-              "\n\n" +
-              ({params.post_footer} ? "Join us next Wednesday, at 12:00 in ${params.room}" : "")
+              "\n"
+
+          env.POST += (${params.details_url} != '') ? ${params.details_url} : ''    
+          env.POST += "\n\n"
+          env.POST += (${params.post_footer} == true) ? "Join us next Wednesday, at 12:00 in ${params.room}" : ''
 
           sh 'printenv'
         }
@@ -94,9 +92,6 @@ pipeline {
     }
 
     stage('Create post') {
-      // when {
-      //   branch 'jenkinsfile'
-      // }
       steps {
         script {
           dir("${env.WORKSPACE}/_posts") {
