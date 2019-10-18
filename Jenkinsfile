@@ -108,6 +108,7 @@ pipeline {
             sh 'git status'
             sh "git add ${env.FILENAME}"
             sh "git commit -m '${params.post_title}'"
+            sh "eval $(ssh-agent)"
             sshagent(['jenkins-github-ssh-key']) {
               sh "git push origin HEAD:${env.GIT_BRANCH}"
             }
