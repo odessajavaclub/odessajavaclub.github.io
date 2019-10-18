@@ -56,6 +56,7 @@ pipeline {
             sh 'git pull'
             sh "git config remote.origin.url 'https://${env.GIT_TOKEN}@github.com/odessajavaclub/odessajavaclub.github.io.git'"
             sh 'git clean -fdx'
+            sh 'git checkout jenkinsfile'
           }
         }
       }
