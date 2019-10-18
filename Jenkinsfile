@@ -30,7 +30,7 @@ pipeline {
     string(
         name: 'details_url',
         description: 'Path to video or GitHub repo',
-        // defaultValue: ''
+        defaultValue: ''
     )
     string(
         name: 'image_url',
@@ -39,27 +39,7 @@ pipeline {
     )
   }
 
-  environment {
-    GIT_TOKEN = credentials("jenkins-github-access-token")
-  }
-
   stages {
-
-    stage('Set up git environment') {
-      // when {
-      //   branch 'jenkinsfile'
-      // }
-      steps {
-        script {
-          dir("${env.WORKSPACE}") {
-            sh "git config remote.origin.url 'https://${env.GIT_TOKEN}@github.com/odessajavaclub/odessajavaclub.github.io.git'"
-            sh "git pull origin jenkinsfile"
-            sh 'git clean -fdx'
-            sh "git checkout jenkinsfile"
-          }
-        }
-      }
-    }
 
     stage('Prepare post') {
       // when {
@@ -88,7 +68,7 @@ pipeline {
               "\n" +
               "${params.post_body}" +
               "\n" +
-              ({params.details_url} ? "[${params.details_url}](${params.details_url})" : "") +
+              (${params.details_url} != '' ? "[${params.details_url}](${params.details_url})" : "") +
               "\n\n" +
               ({params.post_footer} ? "Join us next Wednesday, at 12:00 in ${params.room}" : "")
 
@@ -108,9 +88,8 @@ pipeline {
             sh 'git status'
             sh "git add ${env.FILENAME}"
             sh "git commit -m '${params.post_title}'"
-            sh "eval $(ssh-agent)"
             sshagent(['jenkins-github-ssh-key']) {
-              sh "git push origin HEAD:${env.GIT_BRANCH}"
+              sh 'git push origin'
             }
           }
         }
