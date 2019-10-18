@@ -6,14 +6,10 @@ pipeline {
 
   agent any
 
-  triggers {
-    cron('H H 1 1 *')
-  }
-
   parameters {
     string(
         name: 'post_title',
-        description: 'Used for filename and post.sh name. The space will be replaced by `-` in the file name.',
+        description: 'Used for filename and post title. The space will be replaced by `-` in the file name.',
         defaultValue: ''
     )
     text(
@@ -23,47 +19,35 @@ pipeline {
     )
     booleanParam(
         name: 'post_footer',
-        description: 'Add "Join us next Wednesday, at 12:00 in  room"',
+        description: 'Add "Join us next Wednesday, at 12:00 in target room"',
         defaultValue: true
     )
     choice(
         name: 'room',
-        description: '',
-        choices: 'Jamaica (room 223)\nSpain (room 426)' // TODO: Replace this with Odessa rooms
+        description: 'Meeting room',
+        choices: ['Jamaica (room 223)', 'Spain (room 426)'] // TODO: Replace this with Odessa rooms
     )
     string(
         name: 'details_url',
         description: 'Path to video or GitHub repo',
-        defaultValue: ''
+        // defaultValue: ''
     )
     string(
         name: 'image_url',
-        description: 'Path to the image',
-        defaultValue: '/images/default.jpg',
+        description: 'Path to the post image',
+        defaultValue: '/assets/images/post.png',
     )
   }
 
   environment {
-    GIT_TOKEN = credentials("Jenkins-GitHub-Apps-Personal-access-tokens")
+    GIT_TOKEN = credentials("jenkins-github-access-token")
   }
 
   stages {
 
-    stage('Set up environment') {
-      when {
-        branch 'master'
-      }
-      steps {
-        script {
-          env.SKIP_AUTO_RUN = params.post_title == ''
-        }
-      }
-    }
-
     stage('Set up git environment') {
       when {
-        branch 'master'
-        environment name: 'SKIP_AUTO_RUN', value: 'false'
+        branch 'jenkinsfile'
       }
       steps {
         script {
@@ -79,8 +63,7 @@ pipeline {
 
     stage('Prepare post') {
       when {
-        branch 'master'
-        environment name: 'SKIP_AUTO_RUN', value: 'false'
+        branch 'jenkinsfile'
       }
       steps {
         script {
@@ -104,6 +87,7 @@ pipeline {
               "---\n" +
               "\n" +
               "${params.post_body}" +
+              "\n" +
               ({params.details_url} ? "[${params.details_url}](${params.details_url})" : "") +
               "\n\n" +
               ({params.post_footer} ? "Join us next Wednesday, at 12:00 in ${params.room}" : "")
@@ -115,8 +99,7 @@ pipeline {
 
     stage('Create post') {
       when {
-        branch 'master'
-        environment name: 'SKIP_AUTO_RUN', value: 'false'
+        branch 'jenkinsfile'
       }
       steps {
         script {
@@ -125,7 +108,7 @@ pipeline {
             sh 'git status'
             sh "git add ${env.FILENAME}"
             sh "git commit -m '${params.post_title}'"
-            sshagent(['jenkins-deploy-keys']) {
+            sshagent(['jenkins-github-ssh-key']) {
               sh "git push origin HEAD:${env.GIT_BRANCH}"
             }
           }
