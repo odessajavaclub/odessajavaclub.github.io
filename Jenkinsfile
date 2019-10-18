@@ -68,7 +68,7 @@ pipeline {
               "\n" +
               "${params.post_body}" +
               "\n" +
-              (${params.details_url} != '' ? "[${params.details_url}](${params.details_url})" : "") +
+              ({params.details_url} != '' ? "[${params.details_url}](${params.details_url})" : "") +
               "\n\n" +
               ({params.post_footer} ? "Join us next Wednesday, at 12:00 in ${params.room}" : "")
 
