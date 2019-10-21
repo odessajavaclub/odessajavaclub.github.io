@@ -8,7 +8,7 @@ show_downloads: "false"
 
 # excerpts
 show_excerpts: "true"
-# excerpt_separator: <!--more-->
+excerpt_separator: <!--more-->
 
 # google_analytics: [Your Google Analytics tracking ID]
 
