@@ -9,13 +9,19 @@ title:  "Event#12 Quarkus"
 image: /assets/images/post.png
 date:   YYYY-MM-DD HH:MM:ss +0200
 ---
-(excerpt content)
-<!--more-->
-(additional content)
+(Short Summary)
 ```
 
-- layout must be `post`
-- `excerpt content` will be displayed on the home page and TV
-- `additional content` content will be displayed only on the web page
+An example:
+```
+---
+layout: post
+title:  "Event#12 Quarkus"
+image: /assets/images/post.png
+date:   2019-07-10 12:00:00 +0200
+---
 
-Some examples can also be found at `/examples/` folder
+This week on Java club we will take a look at Quarkus (Supersonic, Subatomic)[https://quarkus.io/](https://quarkus.io/)
+
+Join us next Wednesday, at 12:00 in Long Island (Room 805)
+```
