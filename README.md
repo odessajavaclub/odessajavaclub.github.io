@@ -1,12 +1,12 @@
 ## To create a new post:
 
-1. Create a new file in `_posts` folder: `YYYY-MM-DD-title.md`
-2. The template of the newly created post is:
+1. Create a new file in `_posts` folder: `YYYY-MM-DD-Event-##-title.md`
+2. The template of the post:
 ```
 ---
 layout: post
 title:  "Event#12 Quarkus"
-image: /path/to/post_image.png
+image: /assets/images/post.png
 date:   YYYY-MM-DD HH:MM:ss +0200
 ---
 (excerpt content)
@@ -14,4 +14,8 @@ date:   YYYY-MM-DD HH:MM:ss +0200
 (additional content)
 ```
 
-An example can also be found at `/examples/2019-07-07-post-example-1.md`
+- layout must be `post`
+- `excerpt content` will be displayed on the home page and TV
+- `additional content` content will be displayed only on the web page
+
+Some examples can also be found at `/examples/` folder
