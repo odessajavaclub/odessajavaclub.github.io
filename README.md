@@ -1,27 +1,28 @@
 ## To create a new post:
 
-1. Create a new file in `_posts` folder: `YYYY-MM-DD-Event-##-title.md`
+1. Create a new file in `_posts` folder: `YYYY-MM-DD-event-##-title.md`
 2. The template of the post:
 ```
 ---
 layout: post
-title:  "Event#12 Quarkus"
+title:  "Event#__ Title"
 image: /assets/images/post.png
-date:   YYYY-MM-DD HH:MM:ss +0200
+date:   YYYY-MM-DD HH:MM:SS +0200
 ---
-(Short Summary)
+This week on Java club we will take a look at TITLE.
+
+Join us on Wednesday, at 12:00 in Long Island (Room 805)
 ```
 
 An example:
 ```
 ---
 layout: post
-title:  "Event#12 Quarkus"
+title:  "Event#26 Hexagonal Architecture"
 image: /assets/images/post.png
-date:   2019-07-10 12:00:00 +0200
+date:   2019-10-30 12:00:00 +0200
 ---
+This week on Java club we will take a look at Hexagonal Architecture.
 
-This week on Java club we will take a look at Quarkus (Supersonic, Subatomic)[https://quarkus.io/](https://quarkus.io/)
-
-Join us next Wednesday, at 12:00 in Long Island (Room 805)
+Join us on Wednesday, at 12:00 in Long Island (Room 805)
 ```
