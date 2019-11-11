@@ -11,7 +11,7 @@ layout: default
   {%- if site.posts.size > 0 -%}
   <h2 class="post-list-heading">{{ page.list_title | default: "Our meetings" }}</h2>
   <ul class="post-list">
-    {% for post in paginator.posts %}
+    {%- for post in site.posts -%}
     <li>
       <h3>
         <a class="post-link" href="{{ post.url | relative_url }}">
@@ -30,28 +30,3 @@ layout: default
   </ul>
   {%- endif -%}
 </div>
-
-  <!-- 
-    Showing buttons to move to the next and to the previous list of posts (pager buttons).
-  -->
-  {% if paginator.total_pages > 1 %}
-      {% if paginator.previous_page %}
-          {% if paginator.first_page %}
-            <a href="{{ paginator.first_page_path | prepend: site.baseurl | replace: '//', '/' }}">First</a>
-          {% endif %}
-          <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr;</a>
-      {% endif %}
-
-      {% if paginator.page_trail %}
-        {% for trail in paginator.page_trail %}
-              <a href="{{ trail.path | prepend: site.baseurl | replace: '//', '/' }}" title="{{trail.title}}">{{ trail.num }}</a>
-        {% endfor %}
-      {% endif %}
-
-      {% if paginator.next_page %}
-          <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&rarr;</a>
-          {% if paginator.last_page %}
-            <a href="{{ paginator.last_page_path | prepend: site.baseurl | replace: '//', '/' }}">Last</a>
-          {% endif %}
-      {% endif %}
-  {% endif %}
