@@ -12,24 +12,8 @@ excerpt_separator: <!--more-->
 
 # google_analytics: [Your Google Analytics tracking ID]
 
-pagination:
-  enabled: true
-  debug: false
-  permalink: '/page/:num/'
-  sort_field: 'date'
-  sort_reverse: true
-  collection: 'posts'
-  per_page: 5
-  indexpage: 'index'
-  title: ':title - page :num of :max'
-  limit: 0
-  trail: 
-    before: 1 # The number of links before the current page
-    after: 1  # The number of links after the current page
-
 # Build settings
 markdown: kramdown
 theme: jekyll-theme-modernist
 plugins:
     - jekyll-feed
-    - jekyll-paginate-v2
