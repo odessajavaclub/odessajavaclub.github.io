@@ -12,8 +12,11 @@ excerpt_separator: <!--more-->
 
 # google_analytics: [Your Google Analytics tracking ID]
 
+paginate: 5
+
 # Build settings
 markdown: kramdown
 theme: jekyll-theme-modernist
 plugins:
     - jekyll-feed
+    - jekyll-paginate
