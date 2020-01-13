@@ -2,7 +2,7 @@
 layout: post
 title:  "Event#34 Happy Holidays!!!"
 image: /assets/images/post.png
-date:   2020-01-15 13:00:00 +0200
+date:   2020-01-08 13:00:00 +0200
 tags: [holidays]
 ---
 
