@@ -28,3 +28,29 @@ This week on Java club we will take a look at Hexagonal Architecture.
 
 Join us on Wednesday, at 12:00 in Long Island (Room 805)
 ```
+
+## Useful scripts (require Docker installed)
+
+### Run site locally
+
+```
+scripts/run-local.sh
+```
+
+The site is available at `localhost:4000`.
+As you make changes to your blog, they will automatically be picked up the Jekyll process running in a docker container.
+
+### Build site
+
+```
+scripts/build.sh
+```
+
+### Update dependencies
+
+```
+scripts/update-deps.sh
+```
+
+This will update `Gemfile.lock` using the provided `Gemfile`.
+Dependency versions used by `github-pages` gem is provided [here](https://pages.github.com/versions/).
